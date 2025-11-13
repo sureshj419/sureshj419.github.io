@@ -12,7 +12,7 @@
         const error = urlParams.get('error');
         
         // Redirect back to app with the code
-        const appDeepLink = `oktademo://auth/callback?code=${code}&state=${state}`;
+        const appDeepLink = `https://oktademo/?code=${code}&state=${state}`;
         
         // Try to open app
         window.location.href = appDeepLink;

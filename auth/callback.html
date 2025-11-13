@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting to App</title>
+</head>
+<body>
+    <script>
+        // Extract the authorization code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const state = urlParams.get('state');
+        const error = urlParams.get('error');
+        
+        // Redirect back to app with the code
+        const appDeepLink = `oktademo://auth/callback?code=${code}&state=${state}`;
+        
+        // Try to open app
+        window.location.href = appDeepLink;
+        
+        // Fallback if app doesn't open
+        setTimeout(() => {
+            document.body.innerHTML = `
+                <h2>Redirecting to App</h2>
+                <p>If the app doesn't open automatically:</p>
+                <button onclick="window.location.href='${appDeepLink}'">
+                    Click here to open app
+                </button>
+                <p>Or <a href="https://play.google.com/store/apps/details?id=com.yourapp">download the app</a></p>
+            `;
+        }, 1000);
+    </script>
+</body>
+</html>
